@@ -1,31 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>OVA ANSV - Mundo Interactivo</title>
+    <title>Mundo PESV - ANSV</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- 1. EL MOTOR 3D (Link oficial de Google para evitar errores de CORS) -->
+    <script type="module" src="https://ajax.googleapis.com"></script>
+
     <style>
-        body { margin: 0; background-color: #003366; }
-        model-viewer { width: 100vw; height: 100vh; background-color: #003366; }
-        .Hotspot { background: #FF6B00; border-radius: 50%; width: 24px; height: 24px; border: 3px solid white; cursor: pointer; }
-        .HotspotAnnotation { background: white; border-radius: 4px; padding: 4px 10px; font-weight: bold; font-family: sans-serif; position: absolute; transform: translate(20px, -20px); }
+        /* FONDO AZUL INSTITUCIONAL */
+        body { margin: 0; padding: 0; background-color: #003366; overflow: hidden; }
+        model-viewer {
+            width: 100vw;
+            height: 100vh;
+            background-color: #003366;
+        }
+
+        /* DISEÑO DE LOS PUNTOS NARANJAS (HOTSPOTS) */
+        .Hotspot {
+            background: #FF6B00; /* Naranja ANSV */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            border: 3px solid white;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        /* GESTO DE INTERACCIÓN: SE AGRANDA AL PASAR EL MOUSE */
+        .Hotspot:hover { transform: scale(1.4); background: #FF8C00; }
+
+        /* ETIQUETAS DE TEXTO */
+        .HotspotAnnotation {
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            color: #333;
+            display: block;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 6px 12px;
+            position: absolute;
+            transform: translate(25px, -25px);
+            pointer-events: none;
+        }
+
+        /* LIMPIEZA VISUAL (OCULTAR BOTONES DE GOOGLE) */
+        #ar-button { display: none; }
     </style>
 </head>
 <body>
-    <!-- IMPORTANTE: El src debe ser exactamente el nombre del archivo en GitHub -->
+
+    <!-- 2. EL VISOR CON LÍMITES DE CÁMARA (PROBLEMA 1 Y 2) -->
     <model-viewer 
-        src="isla.glb" 
+        src="./isla.glb" 
         camera-controls 
-        auto-rotate 
-        shadow-intensity="1"
+        interaction-prompt="none"
+        shadow-intensity="1" 
+        exposure="0.8" 
+        /* Límites: No ver abajo y controlar el zoom */
         min-camera-orbit="auto 0deg auto" 
-        max-camera-orbit="auto 90deg auto">
-        
-        <!-- Puntos de prueba (ajusta las coordenadas luego) -->
-        <button class="Hotspot" slot="hotspot-1" data-position="0 1 0" data-normal="0 1 0">
+        max-camera-orbit="auto 90deg auto" 
+        min-field-of-view="15deg"
+        auto-rotate>
+
+        <!-- 3. ACCIONADORES (LOS 8 MÓDULOS) -->
+        <!-- Módulo 1 (Ajusta las coordenadas según tu isla) -->
+        <button class="Hotspot" slot="hotspot-1" data-position="0 1.5 0" data-normal="0 1 0" onclick="alert('Abriendo Módulo 1: Normativa')">
             <div class="HotspotAnnotation">Módulo 1: Normativa</div>
         </button>
+
+        <!-- Módulo 2 -->
+        <button class="Hotspot" slot="hotspot-2" data-position="1 1 -1" data-normal="0 1 0" onclick="alert('Abriendo Módulo 2: Clasificación')">
+            <div class="HotspotAnnotation">Módulo 2: Clasificación</div>
+        </button>
+
     </model-viewer>
 
-    <script type="module" src="https://ajax.googleapis.com"></script>
 </body>
 </html>
