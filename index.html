@@ -1,22 +1,31 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>&lt;model-viewer&gt; template</title>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>OVA ANSV - Mundo Interactivo</title>
     <meta charset="utf-8">
-    <meta name="description" content="&lt;model-viewer&gt; template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" href="./styles.css" rel="stylesheet"/>
-  </head>
-  <body>
-    <!-- <model-viewer> HTML element -->
-    <model-viewer src="./isla.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="0.76" autoplay exposure="0.55" min-camera-orbit="-43deg 49deg 3.49m" max-camera-orbit="37deg 90deg auto" min-field-of-view="22.98deg" shadow-softness="0.95">
-      <button class="Hotspot" slot="hotspot-5" data-surface="1 0 83 82 15 -75.795 10.085 66.710" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Prueba 1</div>
-      </button><button class="Hotspot" slot="hotspot-7" data-surface="2 0 458 443 465 359.549 -146.271 -212.278" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Purbe 2</div>
-      </button>
-    </model-viewer>  
-    <!-- Loads <model-viewer> for browsers: -->
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/{{MODELVIEWER_VERSION}}/model-viewer.min.js"></script>
-  </body>
+    <style>
+        body { margin: 0; background-color: #003366; }
+        model-viewer { width: 100vw; height: 100vh; background-color: #003366; }
+        .Hotspot { background: #FF6B00; border-radius: 50%; width: 24px; height: 24px; border: 3px solid white; cursor: pointer; }
+        .HotspotAnnotation { background: white; border-radius: 4px; padding: 4px 10px; font-weight: bold; font-family: sans-serif; position: absolute; transform: translate(20px, -20px); }
+    </style>
+</head>
+<body>
+    <!-- IMPORTANTE: El src debe ser exactamente el nombre del archivo en GitHub -->
+    <model-viewer 
+        src="isla.glb" 
+        camera-controls 
+        auto-rotate 
+        shadow-intensity="1"
+        min-camera-orbit="auto 0deg auto" 
+        max-camera-orbit="auto 90deg auto">
+        
+        <!-- Puntos de prueba (ajusta las coordenadas luego) -->
+        <button class="Hotspot" slot="hotspot-1" data-position="0 1 0" data-normal="0 1 0">
+            <div class="HotspotAnnotation">Módulo 1: Normativa</div>
+        </button>
+    </model-viewer>
+
+    <script type="module" src="https://ajax.googleapis.com"></script>
+</body>
 </html>
