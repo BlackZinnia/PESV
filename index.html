@@ -1,84 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <title>OVA ANSV - Mundo Interactivo</title>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
     <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        /* 1. EL FONDO AZUL QUE QUERÍAS */
-        body { margin: 0; padding: 0; background-color: #003366; overflow: hidden; }
-        model-viewer {
-            width: 100vw;
-            height: 100vh;
-            background-color: #003366; /* Azul ANSV */
-        }
-
-        /* 2. DISEÑO DE LOS PUNTOS (HOTSPOTS) */
-        .Hotspot {
-            background: #FF6B00; /* Naranja ANSV */
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            border: 3px solid white;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
-        }
-
-        /* GESTO DE UX: EL PUNTO SE AGRANDA AL PASAR EL MOUSE */
-        .Hotspot:hover { transform: scale(1.4); background: #FF8C00; }
-
-        /* EL TEXTO QUE EXPLICA EL MÓDULO */
-        .HotspotAnnotation {
-            background: white;
-            border-radius: 6px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            color: #333;
-            display: block;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-            padding: 6px 12px;
-            position: absolute;
-            transform: translate(25px, -25px);
-            pointer-events: none; /* No estorba el clic */
-        }
-
-        /* OCULTAR EL LOGO DE GOOGLE Y COSAS EXTRA */
-        #ar-button { display: none; }
-    </style>
-</head>
-<body>
-
-    <!-- 3. EL VISOR CON LÍMITES DE CÁMARA (PROBLEMA 1 Y 2) -->
-    <model-viewer 
-        src="./isla.glb" 
-        camera-controls 
-        interaction-prompt="none"
-        shadow-intensity="1" 
-        autoplay 
-        exposure="0.7" 
-        /* Límites para no ver la isla por debajo y controlar el zoom */
-        min-camera-orbit="auto 0deg auto" 
-        max-camera-orbit="auto 90deg auto" 
-        min-field-of-view="15deg"
-        auto-rotate>
-
-        <!-- ACCIONADORES (TUS 8 MÓDULOS) -->
-        <!-- Módulo 1 (Ejemplo en tu Prueba 1) -->
-        <button class="Hotspot" slot="hotspot-5" data-surface="1 0 83 82 15 -75.795 10.085 66.710" data-visibility-attribute="visible" onclick="alert('Abriendo Módulo 1: Normativa')">
-            <div class="HotspotAnnotation">Módulo 1: Normativa</div>
-        </button>
-
-        <!-- Módulo 2 (Ejemplo en tu Purbe 2) -->
-        <button class="Hotspot" slot="hotspot-7" data-surface="2 0 458 443 465 359.549 -146.271 -212.278" data-visibility-attribute="visible" onclick="alert('Abriendo Módulo 2: Clasificación')">
-            <div class="HotspotAnnotation">Módulo 2: Clasificación</div>
-        </button>
-
-    </model-viewer>
-
-    <!-- CARGA DEL MOTOR 3D -->
-    <script type="module" src="https://ajax.googleapis.com"></script>
-
-</body>
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer src="./isla.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="0.76" autoplay exposure="0.55" min-camera-orbit="-43deg 49deg 3.49m" max-camera-orbit="37deg 90deg auto" min-field-of-view="22.98deg" shadow-softness="0.95">
+      <button class="Hotspot" slot="hotspot-5" data-surface="1 0 83 82 15 -75.795 10.085 66.710" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Prueba 1</div>
+      </button><button class="Hotspot" slot="hotspot-7" data-surface="2 0 458 443 465 359.549 -146.271 -212.278" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Purbe 2</div>
+      </button>
+    </model-viewer>  
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/{{MODELVIEWER_VERSION}}/model-viewer.min.js"></script>
+  </body>
 </html>
