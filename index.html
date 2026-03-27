@@ -55,17 +55,22 @@
 <body>
 
     <!-- 2. EL VISOR CON LÍMITES DE CÁMARA (PROBLEMA 1 Y 2) -->
-    <model-viewer 
-        src="./isla.glb" 
-        camera-controls 
-        interaction-prompt="none"
-        shadow-intensity="1" 
-        exposure="0.8" 
-        /* Límites: No ver abajo y controlar el zoom */
-        min-camera-orbit="auto 0deg auto" 
-        max-camera-orbit="auto 90deg auto" 
-        min-field-of-view="15deg"
-        auto-rotate>
+  <model-viewer 
+    src="https://raw.githubusercontent.com" 
+    camera-controls 
+    auto-rotate 
+    shadow-intensity="1" 
+    style="width: 100vw; height: 100vh; background-color: #003366;"
+    min-camera-orbit="auto 0deg auto" 
+    max-camera-orbit="auto 90deg auto"
+    interaction-prompt="none">
+
+    <!-- PUNTO DE PRUEBA (HOTSPOT) -->
+    <button class="Hotspot" slot="hotspot-1" data-position="0 1 0" data-normal="0 1 0">
+        <div class="HotspotAnnotation">Módulo 1: Normativa</div>
+    </button>
+</model-viewer>
+
 
         <!-- 3. ACCIONADORES (LOS 8 MÓDULOS) -->
         <!-- Módulo 1 (Ajusta las coordenadas según tu isla) -->
